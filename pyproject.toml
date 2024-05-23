@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "vocabulary"
+version = "0.1.0"
+description = "A vocabulary handler used to create, retrieve, and generate vocabulary for Machine Learning algorithms."
+authors = ["jonasliendl <57270170+jonasliendl@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
