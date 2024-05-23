@@ -1,5 +1,5 @@
 name: Checks for python project
-on: [commit, pull-request]
+on: push
 jobs:
   runs-on: ubuntu-latest
   steps:
