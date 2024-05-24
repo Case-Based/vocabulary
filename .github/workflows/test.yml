@@ -16,4 +16,3 @@ jobs:
           poetry install
       - name: Run tests
         run: make test
-
