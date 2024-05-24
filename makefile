@@ -1,9 +1,9 @@
 .PHONY: test
 test:
-	pytest test/
+	poetry run pytest test/*
 .PHONY: check
 check:
-	pre-commit run --all-files
+	poetry run pre-commit run --all-files
 .PHONY: build
 build:
 	poetry build --verbose
