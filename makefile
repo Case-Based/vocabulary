@@ -1,6 +1,6 @@
 .PHONY: test
 test:
-	pytest test/*
+	poetry run pytest test/*
 .PHONY: check
 check:
 	poetry run pre-commit run --all-files

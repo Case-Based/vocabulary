@@ -15,4 +15,4 @@ jobs:
           curl -sSL https://install.python-poetry.org | python3 -
           poetry install
       - name: Run tests
-        run: poetry run test
+        run: make test

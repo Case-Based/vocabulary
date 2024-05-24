@@ -6,15 +6,13 @@ authors = ["jonasliendl <57270170+jonasliendl@users.noreply.github.com>"]
 license = "MIT"
 readme = "README.md"
 
-[tool.poetry.scripts]
-test = "pytest test/*"
-
 [tool.poetry.dependencies]
 python = "^3.12"
 pre-commit = "^3.7.1"
-
-[tool.poetry.dev-dependencies]
 pytest = "^6.2"
+
+#[tool.poetry.dev-dependencies]
+#pytest = "^6.2"
 
 [build-system]
 requires = ["poetry-core"]
