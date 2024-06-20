@@ -9,18 +9,26 @@ class ValidTypesEnum(Enum):
 
 
 class Field:
-    def __init__(self, key: str, data_type: Optional[ValidTypesEnum], weight: Optional[float],
-                 min_value: Optional[Union[int, float]], max_value: Optional[Union[int, float]]):
+    def __init__(
+        self,
+        key: str,
+        data_type: Optional[ValidTypesEnum],
+        weight: Optional[float],
+        min_value: Optional[Union[int, float]],
+        max_value: Optional[Union[int, float]],
+    ):
         self.__key = key
         self.__data_type = data_type or ValidTypesEnum.Int
         self.__weight = weight or 1.0
-        if ((self.__data_type == ValidTypesEnum.Int and isinstance(min_value, int))
-                or (self.__data_type == ValidTypesEnum.Float and isinstance(min_value, float))):
+        if (self.__data_type == ValidTypesEnum.Int and isinstance(min_value, int)) or (
+            self.__data_type == ValidTypesEnum.Float and isinstance(min_value, float)
+        ):
             self.__min_value = min_value
         else:
             self.__min_value = None
-        if ((self.__data_type == ValidTypesEnum.Int and isinstance(max_value, int))
-                or (self.__data_type == ValidTypesEnum.Float and isinstance(max_value, float))):
+        if (self.__data_type == ValidTypesEnum.Int and isinstance(max_value, int)) or (
+            self.__data_type == ValidTypesEnum.Float and isinstance(max_value, float)
+        ):
             self.__max_value = max_value
         else:
             self.__max_value = None
@@ -68,7 +76,13 @@ class Field:
 
 
 class Vocabulary:
-    def __init__(self, key: str, title: Optional[str], version: Optional[str], fields: Optional[list[Field]]):
+    def __init__(
+        self,
+        key: str,
+        title: Optional[str],
+        version: Optional[str],
+        fields: Optional[list[Field]],
+    ):
         self.__key = key
         self.__title = title or None
         self.__version = version or "1.0"

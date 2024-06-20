@@ -20,14 +20,14 @@ class Parser:
             key=ParserFunctions.generate_vocabulary_key_from_file(self.__file_path),
             version=None,
             title=None,
-            fields=list()
+            fields=list(),
         )
         for line in lines:
             line = line.strip()
-            if not line or line.startswith('#'):
+            if not line or line.startswith("#"):
                 continue
             # Create field from raw value
-            if line.startswith('['):
+            if line.startswith("["):
                 vocabulary.append_field(ParserFunctions.make_field(line))
             # Create key-value pair from raw value
             elif line.startswith(VALID_CHARS):
@@ -43,7 +43,7 @@ class Parser:
                         elif result.key == "key":
                             vocabulary.change_key(result.value)
                     continue
-                current_field = fields[len(fields)-1]
+                current_field = fields[len(fields) - 1]
                 # check for valid key value pair
                 is_valid_key, key_context = ParserFunctions.check_pair(result)
                 if is_valid_key and key_context == ContextTypeEnum.Vocabulary:

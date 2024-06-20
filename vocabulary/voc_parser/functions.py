@@ -2,7 +2,10 @@ from vocabulary.voc_parser.types import KeyValuePair, ContextTypeEnum
 from vocabulary.types import Field
 from re import match, search
 from vocabulary.utils.exception import ParsingError
-from vocabulary.voc_parser.constants import VALID_VOCABULARY_ATTRIBUTES, VALID_FIELD_ATTRIBUTES
+from vocabulary.voc_parser.constants import (
+    VALID_VOCABULARY_ATTRIBUTES,
+    VALID_FIELD_ATTRIBUTES,
+)
 from typing import Optional, Union
 
 
@@ -41,8 +44,8 @@ class ParserFunctions:
         @param raw_value: string
         @return: Field
         """
-        definition_pattern = r'^\s*\[{1}\s*[a-zA-Z0-9-_]+\s*\]{1}#?.*$'
-        extract_key_pattern = r'\[{1}\s*([a-zA-Z0-9-_]+)\s*\]{1}'
+        definition_pattern = r"^\s*\[{1}\s*[a-zA-Z0-9-_]+\s*\]{1}#?.*$"
+        extract_key_pattern = r"\[{1}\s*([a-zA-Z0-9-_]+)\s*\]{1}"
         valid_definition = match(definition_pattern, raw_value)
         if not valid_definition:
             raise ParsingError("Invalid field definition")
@@ -50,22 +53,22 @@ class ParserFunctions:
         if not key:
             raise ParsingError("Invalid field definition")
         return Field(
-            key=key,
-            max_value=None,
-            min_value=None,
-            data_type=None,
-            weight=None
+            key=key, max_value=None, min_value=None, data_type=None, weight=None
         )
 
     @staticmethod
     def convert(raw_value: str) -> Union[int, float, str]:
         string_pattern = r'"([^"]*)"|\'([^\']*)\''
-        int_pattern = r'[-+]?\d+'
-        float_pattern = r'[-+]?\d*\.\d+([eE][-+]?\d+)?'
+        int_pattern = r"[-+]?\d+"
+        float_pattern = r"[-+]?\d*\.\d+([eE][-+]?\d+)?"
 
         string_match = match(string_pattern, raw_value)
         if string_match:
-            return string_match.group(1) if string_match.group(1) is not None else string_match.group(2)
+            return (
+                string_match.group(1)
+                if string_match.group(1) is not None
+                else string_match.group(2)
+            )
 
         float_match = match(float_pattern, raw_value)
         if float_match:
@@ -78,7 +81,7 @@ class ParserFunctions:
 
     @staticmethod
     def make_key_value_pair(raw_value: str) -> KeyValuePair:
-        key_pattern = r'^\s*([A-Za-z0-9_-]+)\s*=\s*'
+        key_pattern = r"^\s*([A-Za-z0-9_-]+)\s*=\s*"
 
         # Extract the key
         key_match = match(key_pattern, raw_value)
@@ -86,8 +89,7 @@ class ParserFunctions:
             raise ValueError("Invalid TOML line: Key not found")
 
         key = key_match.group(1)
-        rest_of_line = raw_value[key_match.end():].strip()
+        rest_of_line = raw_value[key_match.end() :].strip()
 
         value = ParserFunctions.convert(rest_of_line)
         return KeyValuePair(key=key, value=value)
-

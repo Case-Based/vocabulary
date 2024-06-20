@@ -5,36 +5,17 @@ from vocabulary.voc_parser.types import KeyValuePair
 from vocabulary.voc_parser.parser import Parser
 
 INCOME_FIELD = Field(
-    key="income",
-    max_value=None,
-    min_value=None,
-    weight=None,
-    data_type=None
+    key="income", max_value=None, min_value=None, weight=None, data_type=None
 )
 
 
 def test_make_field():
     test_cases: list[TestCase] = [
-        TestCase(
-            input="[income]",
-            expected_output=INCOME_FIELD
-        ),
-        TestCase(
-            input="   [income]",
-            expected_output=INCOME_FIELD
-        ),
-        TestCase(
-            input="[   income]",
-            expected_output=INCOME_FIELD
-        ),
-        TestCase(
-            input="[income    ]",
-            expected_output=INCOME_FIELD
-        ),
-        TestCase(
-            input="[income]#testing",
-            expected_output=INCOME_FIELD
-        )
+        TestCase(input="[income]", expected_output=INCOME_FIELD),
+        TestCase(input="   [income]", expected_output=INCOME_FIELD),
+        TestCase(input="[   income]", expected_output=INCOME_FIELD),
+        TestCase(input="[income    ]", expected_output=INCOME_FIELD),
+        TestCase(input="[income]#testing", expected_output=INCOME_FIELD),
     ]
 
     for test_case in test_cases:
@@ -65,10 +46,7 @@ def test_make_key_value_pair():
             input="weight=1.0",
             expected_output=KeyValuePair(key="weight", value=1.0),
         ),
-        TestCase(
-            input="min=1",
-            expected_output=KeyValuePair(key="min", value=1)
-        )
+        TestCase(input="min=1", expected_output=KeyValuePair(key="min", value=1)),
     ]
 
     for test_case in test_cases:
@@ -90,37 +68,37 @@ def test_parse_vocabulary():
                 data_type=ValidTypesEnum.Float,
                 weight=2.0,
                 min_value=0.0,
-                max_value=None
+                max_value=None,
             ),
             Field(
                 key="account_balance",
                 data_type=ValidTypesEnum.Float,
                 weight=1.5,
                 min_value=None,
-                max_value=None
+                max_value=None,
             ),
             Field(
                 key="average_expenses",
                 data_type=ValidTypesEnum.Float,
                 weight=1.75,
                 min_value=0.0,
-                max_value=None
+                max_value=None,
             ),
             Field(
                 key="age",
                 data_type=ValidTypesEnum.Int,
                 weight=None,
                 min_value=0,
-                max_value=None
+                max_value=None,
             ),
             Field(
                 key="count_balance_in_dispo",
                 data_type=ValidTypesEnum.Int,
                 weight=2.5,
                 min_value=0,
-                max_value=None
-            )
-        ]
+                max_value=None,
+            ),
+        ],
     )
 
     assert result.get_key() == expected_result.get_key()
