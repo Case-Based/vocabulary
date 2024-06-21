@@ -1,0 +1,26 @@
+title = "Credit Score"
+key = "credit_score"
+version = "1.0"
+
+[income]
+type = "float"
+weight = 2.0
+min = 0.0
+
+[account_balance]
+type = "float"
+weight = 1.5
+
+[average_expenses]
+type = "float"
+weight = 1.75
+min = 0.0
+
+[age]
+type = "int"
+min = 0
+
+[count_balance_in_dispo]
+type = "int"
+weight = 2.5
+min = 0
