@@ -9,6 +9,8 @@ VALID_FIELD_ATTRIBUTES = frozenset(
         "min",  # Synonym for min_value
         "max_value",
         "max",  # Synonym for max_value
+        "target_attribute",
+        "target",  # Synonym for target_attribute
     ]
 )
 VALID_VOCABULARY_ATTRIBUTES = frozenset(["key", "title", "version"])

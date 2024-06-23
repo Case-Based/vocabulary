@@ -5,7 +5,12 @@ from vocabulary.voc_parser.types import KeyValuePair
 from vocabulary.voc_parser.parser import Parser
 
 INCOME_FIELD = Field(
-    key="income", max_value=None, min_value=None, weight=None, data_type=None
+    key="income",
+    max_value=None,
+    min_value=None,
+    weight=None,
+    data_type=None,
+    target=None,
 )
 
 
@@ -47,11 +52,18 @@ def test_make_key_value_pair():
             expected_output=KeyValuePair(key="weight", value=1.0),
         ),
         TestCase(input="min=1", expected_output=KeyValuePair(key="min", value=1)),
+        TestCase(
+            input="target=true", expected_output=KeyValuePair(key="target", value=True)
+        ),
+        TestCase(
+            input="target=false",
+            expected_output=KeyValuePair(key="target", value=False),
+        ),
     ]
 
     for test_case in test_cases:
         result = ParserFunctions.make_key_value_pair(test_case.input)
-        assert type(result) == KeyValuePair
+        assert type(result) is KeyValuePair
         assert result == test_case.expected_output
 
 
@@ -69,6 +81,7 @@ def test_parse_vocabulary():
                 weight=2.0,
                 min_value=0.0,
                 max_value=None,
+                target=False,
             ),
             Field(
                 key="account_balance",
@@ -76,6 +89,7 @@ def test_parse_vocabulary():
                 weight=1.5,
                 min_value=None,
                 max_value=None,
+                target=False,
             ),
             Field(
                 key="average_expenses",
@@ -83,6 +97,7 @@ def test_parse_vocabulary():
                 weight=1.75,
                 min_value=0.0,
                 max_value=None,
+                target=False,
             ),
             Field(
                 key="age",
@@ -90,6 +105,7 @@ def test_parse_vocabulary():
                 weight=None,
                 min_value=0,
                 max_value=None,
+                target=False,
             ),
             Field(
                 key="count_balance_in_dispo",
@@ -97,6 +113,15 @@ def test_parse_vocabulary():
                 weight=2.5,
                 min_value=0,
                 max_value=None,
+                target=False,
+            ),
+            Field(
+                key="credit_score",
+                data_type=ValidTypesEnum.Int,
+                weight=0.0,
+                min_value=0,
+                max_value=1000,
+                target=True,
             ),
         ],
     )

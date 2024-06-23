@@ -3,24 +3,35 @@ key = "credit_score"
 version = "1.0"
 
 [income]
+target = false
 type = "float"
 weight = 2.0
 min = 0.0
 
 [account_balance]
+target = false
 type = "float"
 weight = 1.5
 
 [average_expenses]
+target = false
 type = "float"
 weight = 1.75
 min = 0.0
 
 [age]
+target = false
 type = "int"
 min = 0
 
 [count_balance_in_dispo]
+target = false
 type = "int"
 weight = 2.5
 min = 0
+
+[credit_score]
+target = true
+type = "int"
+min = 0
+max = 1000

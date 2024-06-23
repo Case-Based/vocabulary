@@ -11,4 +11,4 @@ class ContextTypeEnum(Enum):
 @dataclass
 class KeyValuePair:
     key: str
-    value: Union[str, int, float]
+    value: Union[str, int, float, bool]

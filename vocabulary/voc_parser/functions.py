@@ -53,7 +53,12 @@ class ParserFunctions:
         if not key:
             raise ParsingError("Invalid field definition")
         return Field(
-            key=key, max_value=None, min_value=None, data_type=None, weight=None
+            key=key,
+            max_value=None,
+            min_value=None,
+            data_type=None,
+            weight=None,
+            target=None,
         )
 
     @staticmethod
@@ -61,6 +66,7 @@ class ParserFunctions:
         string_pattern = r'"([^"]*)"|\'([^\']*)\''
         int_pattern = r"[-+]?\d+"
         float_pattern = r"[-+]?\d*\.\d+([eE][-+]?\d+)?"
+        bool_pattern = r"true|false|True|False"
 
         string_match = match(string_pattern, raw_value)
         if string_match:
@@ -77,6 +83,13 @@ class ParserFunctions:
         int_match = match(int_pattern, raw_value)
         if int_match:
             return int(int_match.group(0))
+
+        bool_match = match(bool_pattern, raw_value)
+        if bool_match:
+            if bool_match.group(0) == "true" or bool_match.group(0) == "True":
+                return True
+            if bool_match.group(0) == "false" or bool_match.group(0) == "False":
+                return False
         raise ValueError("Invalid TOML line: Value type not supported")
 
     @staticmethod

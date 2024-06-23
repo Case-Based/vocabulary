@@ -65,5 +65,7 @@ class Parser:
                         current_field.change_min_value(result.value)
                     elif result.key == "max_value" or result.key == "max":
                         current_field.change_max_value(result.value)
+                    elif result.key == "target_attribute" or result.key == "target":
+                        current_field.set_target(result.value)
 
         return vocabulary

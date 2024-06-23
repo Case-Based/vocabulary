@@ -16,10 +16,12 @@ class Field:
         weight: Optional[float],
         min_value: Optional[Union[int, float]],
         max_value: Optional[Union[int, float]],
+        target: Optional[bool],
     ):
         self.__key = key
         self.__data_type = data_type or ValidTypesEnum.Int
         self.__weight = weight or 1.0
+        self.__target = target or False
         if (self.__data_type == ValidTypesEnum.Int and isinstance(min_value, int)) or (
             self.__data_type == ValidTypesEnum.Float and isinstance(min_value, float)
         ):
@@ -73,6 +75,13 @@ class Field:
 
     def get_max_value(self) -> Optional[Union[int, float]]:
         return self.__max_value
+
+    def is_target(self) -> bool:
+        return self.__target
+
+    def set_target(self, target: bool):
+        check_type(target, bool)
+        self.__target = target
 
 
 class Vocabulary:
